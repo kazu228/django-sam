@@ -10,19 +10,14 @@
 <body>
     <h1>hello/index</h1>
     <p>This is sample page.</p>
-    <p>{{id}}</p>
+    {% comment %} <p>{{id}}</p>
     <p>{{name}}</p>
     <p>あなたのidは{{id}}、あなたの名前は{{name}}です。</p>
-    <a href="{% url 'next' id=id name=name %}">Next ?</a>
-    <form action="{% url 'create' id=id name=name %}" method="post">
+    <a href="{% url 'next' id=id name=name %}">Next ?</a> {% endcomment %}
+    <form action="{% url 'create' id=id name=name%}" method="post">
         {% csrf_token %}
-        <label for="name">name: </label>
-        <input id="name" type="text" name="name">
-        <label for="mail">mail: </label>
-        <input id="mail" type="text" name="mail">
-        <label for="age">age: </label>
-        <input id="age" type="text" name="age">
-        <input type="submit" value="click">
+        {{ form }}
+        <tr><td></td></tr><input type="submit" value="click"></td></tr>
     </form>
 </body>
 </html>
