@@ -10,5 +10,12 @@
 <body>
     <h1>hello/index</h1>
     <p>This is sample page.</p>
+    <ul>
+        {% for item in object_list %}
+            <li>{{ item.name }}</li>
+            <li>{{ item.mail }}</li>
+            <li>{{ item.age }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
