@@ -7,7 +7,8 @@ from django.views import generic
 class IndexView(generic.TemplateView):
     template_name = 'django_app/index.html'
     
-        
+class NextView(generic.TemplateView):
+    template_name = 'django_app/next.html'   
 
 # def index(request, id, name):
 #     params = {
