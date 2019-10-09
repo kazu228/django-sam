@@ -8,7 +8,7 @@ from .forms import SampleForm
 # class IndexView(generic.TemplateView):
 #     template_name = 'django_app/index.html'
 
-class SampleCreateView(generic.CreateView, generic.TemplateView):
+class SampleCreateView(generic.CreateView):
     form_class = SampleForm
     template_name = 'django_app/index.html'
 
