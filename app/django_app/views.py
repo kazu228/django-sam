@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.views import generic
 from .forms import SampleForm
 from .models import Sample
+
 # Create your views here.
 
 
