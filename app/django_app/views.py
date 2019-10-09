@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
 from .forms import SampleForm
+from .models import Sample
 # Create your views here.
 
 
@@ -12,9 +13,9 @@ class SampleCreateView(generic.CreateView):
     form_class = SampleForm
     template_name = 'django_app/index.html'
 
-class NextView(generic.TemplateView):
-    template_name = 'django_app/next.html'   
-
+class NextView(generic.ListView):
+    model = Sample
+    template_name = 'django_app/next.html'
 
 # def index(request, id, name):
 #     params = {
