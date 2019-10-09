@@ -1,17 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
+from .forms import SampleForm
 # Create your views here.
 
 
-class IndexView(generic.TemplateView):
-    template_name = 'django_app/index.html'
+# class IndexView(generic.TemplateView):
+#     template_name = 'django_app/index.html'
     
 class NextView(generic.TemplateView):
     template_name = 'django_app/next.html'   
 
 class SampleCreateView(generic.CreateView):
-    from_class = SampleForm
+    form_class = SampleForm
     template_name = 'django_index.html'
 
 # def index(request, id, name):
