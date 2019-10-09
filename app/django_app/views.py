@@ -10,6 +10,10 @@ class IndexView(generic.TemplateView):
 class NextView(generic.TemplateView):
     template_name = 'django_app/next.html'   
 
+class SampleCreateView(generic.CreateView):
+    from_class = SampleForm
+    template_name = 'django_index.html'
+
 # def index(request, id, name):
 #     params = {
 #         'id': id,
