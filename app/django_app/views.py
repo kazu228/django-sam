@@ -11,9 +11,9 @@ from .forms import SampleForm
 class NextView(generic.TemplateView):
     template_name = 'django_app/next.html'   
 
-class SampleCreateView(generic.CreateView):
+class SampleCreateView(generic.CreateView, generic.TemplateView):
     form_class = SampleForm
-    template_name = 'django_index.html'
+    template_name = 'django_app/index.html'
 
 # def index(request, id, name):
 #     params = {

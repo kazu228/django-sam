@@ -1,6 +1,7 @@
 from django import forms
+from .models import Sample
 
-class SampleForm(forms.Form):
-    name = forms.CharField(label='name')
-    mail = forms.CharField(label='mail')
-    age = forms.IntegerField(label='age')
+class SampleForm(forms.ModelForm):
+    class Meta:
+        model = Sample
+        fields = ['name', 'mail', 'age']
