@@ -1,0 +1,36 @@
+{% extends "app/base.html" %}
+{% block content %}
+<p id="message">ログインします。</p>
+<form action="" method="POST">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body">
+                {% if form.errors %}
+                    <p style="color: red;">入力された情報ではログイン ができませんでした。もう一度入力内容をお確かめください。</p>
+                {% endif %}
+                <p style="color: red">{{ message }}</p>
+                <p id="login">ログイン</p>
+                <p>メールアドレスとパスワードを入力して、ログインボタンをクリックしてください。</p>
+                {% for field in form %}
+                    <p id="label">{{field.label}}:</p>
+                    {{ field }}
+                    {{ field.errors }}
+                    <hr>
+                {% endfor %}
+                <p>メールアドレスは、案内を受けたメールアドレス、パスワードは、そのメールアドレスに記載のパスワード、半角英数字8文字です。</p>
+                <div
+	                class="center-block"
+	                style="text-align: center; #ffe661; border: 1px; "
+                    >
+                    <button type="submit" class="btn btn-success center-block" >ログイン</button>
+                    <input type="hidden" name="next" value="{{ next }}" />
+                </div>
+                {% comment %} <button type="submit" class="btn btn-success center-block" >ログイン</button>
+                <input type="hidden" name="next" value="{{ next }}" />  {% endcomment %}
+                {% csrf_token %}
+            </div>
+        </div>
+    </div>
+</form>
+<a href=""><li style="text-decoration: underline">パスワードを忘れた場合</li></a>
+{% endblock %}
