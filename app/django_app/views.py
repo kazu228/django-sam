@@ -25,15 +25,16 @@ def login(request):
    
    if request.method == "POST":
       #Get the posted form
-      MyLoginForm = LoginForm(request.POST)
-   
+        MyLoginForm = LoginForm(request.POST)
+   if request.method =='GET':
+       MyLoginForm = LoginForm()
+
    if MyLoginForm.is_valid():
-      username = MyLoginForm.cleaned_data['username']
+        username = MyLoginForm.cleaned_data['username']
    else:
-      MyLoginForm = LoginForm()
+        MyLoginForm = LoginForm()
    
-   response = render_to_response(request, 'loggedin.html', {"username" : username}, 
-      context_instance = RequestContext(request))
+   response = render_to_response(request, 'loggedin.html', {"username" : username}, context_instance = RequestContext(request))
    
    response.set_cookie('last_connection', datetime.datetime.now())
    response.set_cookie('username', datetime.datetime.now())
