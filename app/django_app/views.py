@@ -73,7 +73,7 @@ User = get_user_model()
 class UserList(generic.ListView):
     """ユーザーを一覧表示。"""
     # デフォルトUserだと、authアプリケーションのuser_list.htmlを探すため、明示的に指定する。
-    template_name = 'register/user_list.html'
+    template_name = 'app/user_list.html'
     model = User
 
 def user_data_input(request):
@@ -93,3 +93,17 @@ def user_data_input(request):
         'form': form
     }
     return render(request, 'app/user_data_input.html', context)
+
+def user_data_confirm(request):
+    """入力データの確認画面。"""
+    # user_data_inputで入力したユーザー情報をセッションから取り出す。
+    session_form_data = request.session.get('form_data')
+    if session_form_data is None:
+        # セッション切れや、セッションが空でURL直接入力したら入力画面にリダイレクト。
+        return redirect('app:user_data_input')
+
+    context = {
+        'form': UserCreateForm(session_form_data)
+    }
+    return render(request, 'app/user_data_confirm.html', context)
+
