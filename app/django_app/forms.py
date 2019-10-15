@@ -1,8 +1,11 @@
 from django import forms
 from .models import Sample
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import (
-    AuthenticationForm
+    AuthenticationForm, UserCreationForm
 )
+
+User = get_user_model()
 
 class SampleForm(forms.ModelForm):
     class Meta:
