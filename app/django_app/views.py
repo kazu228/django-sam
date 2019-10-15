@@ -73,7 +73,7 @@ User = get_user_model()
 class UserList(generic.ListView):
     """ユーザーを一覧表示。"""
     # デフォルトUserだと、authアプリケーションのuser_list.htmlを探すため、明示的に指定する。
-    template_name = 'app/user_list.html'
+    template_name = 'django_app/user_list.html'
     model = User
 
 def user_data_input(request):
@@ -87,12 +87,12 @@ def user_data_input(request):
         if form.is_valid():
             # 入力後の送信ボタンでここ。セッションに入力データを格納する。
             request.session['form_data'] = request.POST
-            return redirect('app:user_data_confirm')
+            return redirect('django_app:user_data_confirm')
 
     context = {
         'form': form
     }
-    return render(request, 'app/user_data_input.html', context)
+    return render(request, 'django_app/user_data_input.html', context)
 
 def user_data_confirm(request):
     """入力データの確認画面。"""
@@ -100,12 +100,12 @@ def user_data_confirm(request):
     session_form_data = request.session.get('form_data')
     if session_form_data is None:
         # セッション切れや、セッションが空でURL直接入力したら入力画面にリダイレクト。
-        return redirect('app:user_data_input')
+        return redirect('django_app:user_data_input')
 
     context = {
         'form': UserCreateForm(session_form_data)
     }
-    return render(request, 'app/user_data_confirm.html', context)
+    return render(request, 'django_app/user_data_confirm.html', context)
 
 def user_data_create(request):
     """ユーザーを作成する。"""
@@ -115,15 +115,15 @@ def user_data_create(request):
     if session_form_data is None:
         # ここにはPOSTメソッドで、かつセッションに入力データがなかった場合だけ。
         # セッション切れや、不正なアクセス対策。
-        return redirect('app:user_data_input')
+        return redirect('django_app:user_data_input')
 
     form = UserCreateForm(session_form_data)
     if form.is_valid():
         form.save()
-        return redirect('app:user_list')
+        return redirect('django_app:user_list')
 
     # is_validに通過したデータだけセッションに格納しているので、ここ以降の処理は基本的には通らない。
     context = {
         'form': form
     }
-    return render(request, 'app/user_data_input.html', context)
+    return render(request, 'django_app/user_data_input.html', context)
