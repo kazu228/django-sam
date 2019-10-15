@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponse
 from django.views import generic
 from .forms import SampleForm, LoginForm
@@ -6,6 +6,7 @@ from .models import Sample
 from django.template import RequestContext
 import datetime
 from django.contrib.auth import get_user_model
+from .forms import UserCreateForm
 
 # Create your views here.
 
@@ -74,3 +75,21 @@ class UserList(generic.ListView):
     # デフォルトUserだと、authアプリケーションのuser_list.htmlを探すため、明示的に指定する。
     template_name = 'register/user_list.html'
     model = User
+
+def user_data_input(request):
+    """新規ユーザー情報の入力。"""
+    # 一覧表示からの遷移や、確認画面から戻るリンクを押したときはここ。
+    if request.method == 'GET':
+        # セッションに入力途中のデータがあればそれを使う。
+        form = UserCreateForm(request.session.get('form_data'))
+    else:
+        form = UserCreateForm(request.POST)
+        if form.is_valid():
+            # 入力後の送信ボタンでここ。セッションに入力データを格納する。
+            request.session['form_data'] = request.POST
+            return redirect('app:user_data_confirm')
+
+    context = {
+        'form': form
+    }
+    return render(request, 'app/user_data_input.html', context)
