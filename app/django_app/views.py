@@ -5,6 +5,7 @@ from .forms import SampleForm, LoginForm
 from .models import Sample
 from django.template import RequestContext
 import datetime
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 
@@ -63,4 +64,13 @@ def formView(request):
 #     }
 #     result = 'あなたのidは' + str(id) + 'あなたの名前は' + name + "です。"
 
-#     return render(request, 'django_app/index.html', params)
+#     return render(request, 'django_app/index.html', params
+
+
+User = get_user_model()
+
+class UserList(generic.ListView):
+    """ユーザーを一覧表示。"""
+    # デフォルトUserだと、authアプリケーションのuser_list.htmlを探すため、明示的に指定する。
+    template_name = 'register/user_list.html'
+    model = User
