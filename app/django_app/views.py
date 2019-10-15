@@ -107,3 +107,23 @@ def user_data_confirm(request):
     }
     return render(request, 'app/user_data_confirm.html', context)
 
+def user_data_create(request):
+    """ユーザーを作成する。"""
+    # user_data_inputで入力したユーザー情報をセッションから取り出す。
+    # ユーザー作成後は、セッションを空にしたいのでpopメソッドで取り出す。
+    session_form_data = request.session.pop('form_data', None)
+    if session_form_data is None:
+        # ここにはPOSTメソッドで、かつセッションに入力データがなかった場合だけ。
+        # セッション切れや、不正なアクセス対策。
+        return redirect('app:user_data_input')
+
+    form = UserCreateForm(session_form_data)
+    if form.is_valid():
+        form.save()
+        return redirect('app:user_list')
+
+    # is_validに通過したデータだけセッションに格納しているので、ここ以降の処理は基本的には通らない。
+    context = {
+        'form': form
+    }
+    return render(request, 'app/user_data_input.html', context)
