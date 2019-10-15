@@ -7,9 +7,9 @@
     </div>
     {% endfor %}
 
-    <a href="{% url 'register:user_data_input' %}" class="btn btn-primary btn-lg">戻る</a>
+    <a href="{% url 'django_app:user_data_input' %}" class="btn btn-primary btn-lg">戻る</a>
     <hr>
-    <form action="{% url 'register:user_data_create' %}" method="POST">
+    <form action="{% url 'django_app:user_data_create' %}" method="POST">
         <button type="submit" class="btn btn-primary btn-lg">送信</button>
         {% csrf_token %}
     </form>
