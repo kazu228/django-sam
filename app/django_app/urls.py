@@ -7,6 +7,7 @@ urlpatterns = [
     path('next', views.NextView.as_view(), name='next'),
     url(r'^connection/',views.formView, name = 'loginform'),
     url(r'^login/', views.login, name = 'login'),
+    path('user_list', views.UserList.as_view(), name='user_list'),
     path('user_data_input/', views.user_data_input, name='user_data_input'),
     path('user_data_confirm/', views.user_data_confirm, name='user_data_confirm'),
     path('user_data_create/', views.user_data_create, name='user_data_create'),
