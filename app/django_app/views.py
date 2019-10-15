@@ -6,7 +6,11 @@ from .models import Sample
 from django.template import RequestContext
 import datetime
 from django.contrib.auth import get_user_model
-from .forms import UserCreateForm
+from .forms import UserCreateForm, LoginForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import (
+    LoginView, LogoutView
+)
 
 # Create your views here.
 
@@ -22,6 +26,15 @@ class NextView(generic.ListView):
     model = Sample
     template_name = 'django_app/next.html'
 
+class Login(LoginView):
+    """ログインページ"""
+    form_class = LoginForm
+    template_name = 'register/login.html'
+
+
+class Logout(LoginRequiredMixin, LogoutView):
+    """ログアウトページ"""
+    template_name = 'django_app/user_list.html'
 
 # def index(request, id, name):
 #     params = {
