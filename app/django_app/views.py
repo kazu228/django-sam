@@ -34,7 +34,7 @@ class Login(LoginView):
 
 class Logout(LoginRequiredMixin, LogoutView):
     """ログアウトページ"""
-    template_name = 'django_app/user_list.html'
+    template_name = 'django_app/index.html'
 
 # def index(request, id, name):
 #     params = {
