@@ -121,4 +121,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_URL = 'app:login'
-LOGIN_REDIRECT_URL = 'app:top'
+LOGIN_REDIRECT_URL = 'app:top' # ログインページの設定

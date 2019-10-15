@@ -11,4 +11,6 @@ urlpatterns = [
     path('user_data_input/', views.user_data_input, name='user_data_input'),
     path('user_data_confirm/', views.user_data_confirm, name='user_data_confirm'),
     path('user_data_create/', views.user_data_create, name='user_data_create'),
+    path('login/', views.Login.as_view(), name='login'),
+    path('logout/', views.Logout.as_view(), name='logout'),
 ]
