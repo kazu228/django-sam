@@ -120,5 +120,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_URL = 'app:login'
-LOGIN_REDIRECT_URL = 'app:top' # ログインページの設定
+LOGIN_URL = 'django_app:login'
+LOGIN_REDIRECT_URL = 'django_app:user_list' # ログインページの設定
