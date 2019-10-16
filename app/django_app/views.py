@@ -61,7 +61,8 @@ def user_data_input(request):
         # セッションに入力途中のデータがあればそれを使う。
         form = UserCreateForm(request.session.get('form_data'))  #確認画面から戻ってきた時にデータを取り出す
     else:
-        form = UserCreateForm(request.POST)  
+        form = UserCreateForm(request.POST)  #入力された内容をフォーム形式のhtmlに変換できる class(request.POST)で
+                                             #from.is_valid()を使うためにUserCreateForm(request.POST)を作ってる？
         if form.is_valid():  #フォームにデータが正しく入力された時
             # 入力後の送信ボタンでここ。セッションに入力データを格納する。格納したら、user_data_confirmに移動
             request.session['form_data'] = request.POST
