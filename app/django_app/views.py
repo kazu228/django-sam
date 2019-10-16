@@ -114,3 +114,11 @@ def add_cookie(request):
 def check_cookie(request):
     value = request.COOKIES["name"]
     return HttpResponse("Cookie test value %s" % value)
+
+def post_comment(request):
+    if request.method == 'POST':
+        if request.session.get('has_commented', False):
+            return HttpResponse("You've already commented")
+        request.session['has_commented'] = True
+        return HttpResponse('Thanks for your comment !!')
+    return render_to_response('post_commnet.html')
