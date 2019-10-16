@@ -13,4 +13,6 @@ urlpatterns = [
     path('user_data_create/', views.user_data_create, name='user_data_create'),
     path('', views.Login.as_view(), name='login'),
     path('logout/', views.Logout.as_view(), name='logout'),
+    path('add_cookie/', views.add_cookie),
+    path('check_cookie', views.check_cookie),
 ]
