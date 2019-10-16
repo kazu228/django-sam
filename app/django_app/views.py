@@ -121,4 +121,4 @@ def post_comment(request):
             return HttpResponse("You've already commented")
         request.session['has_commented'] = True
         return HttpResponse('Thanks for your comment !!')
-    return render_to_response('post_comment.html')
+    return render_to_response('django_app/post_comment.html')
