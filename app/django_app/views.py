@@ -59,11 +59,11 @@ def user_data_input(request):
     # 一覧表示からの遷移や、確認画面から戻るリンクを押したときはここ。
     if request.method == 'GET':
         # セッションに入力途中のデータがあればそれを使う。
-        form = UserCreateForm(request.session.get('form_data'))
+        form = UserCreateForm(request.session.get('form_data'))  #確認画面から戻ってきた時にデータを取り出す
     else:
-        form = UserCreateForm(request.POST)
-        if form.is_valid():
-            # 入力後の送信ボタンでここ。セッションに入力データを格納する。
+        form = UserCreateForm(request.POST)  
+        if form.is_valid():  #フォームにデータが正しく入力された時
+            # 入力後の送信ボタンでここ。セッションに入力データを格納する。格納したら、user_data_confirmに移動
             request.session['form_data'] = request.POST
             return redirect('django_app:user_data_confirm')
 
@@ -75,7 +75,7 @@ def user_data_input(request):
 def user_data_confirm(request):
     """入力データの確認画面。"""
     # user_data_inputで入力したユーザー情報をセッションから取り出す。
-    session_form_data = request.session.get('form_data')
+    session_form_data = request.session.get('form_data')  #確認画面の内容はセッションから取り出す
     if session_form_data is None:
         # セッション切れや、セッションが空でURL直接入力したら入力画面にリダイレクト。
         return redirect('django_app:user_data_input')
@@ -83,8 +83,8 @@ def user_data_confirm(request):
     context = {
         'form': UserCreateForm(session_form_data)
     }
-    return render(request, 'django_app/user_data_confirm.html', context)
-
+    return render(request, 'django_app/user_data_confirm.html', context)  #user_data_confirm.htmlのformにセッション
+                                                                          # のデータが渡される
 def user_data_create(request):
     """ユーザーを作成する。"""
     # user_data_inputで入力したユーザー情報をセッションから取り出す。
