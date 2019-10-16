@@ -105,3 +105,12 @@ def user_data_create(request):
         'form': form
     }
     return render(request, 'django_app/user_data_input.html', context)
+
+def add_cookie(request):
+    respsonse = HttpResponse("Cookie Test")
+    respsonse.set_cookie("name", "john")
+    return respsonse
+
+def check_cookie(request):
+    value = request.COOKIES["name"]
+    return HttpResponse("Cookie test value %s" % value)
