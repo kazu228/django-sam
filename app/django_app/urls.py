@@ -14,5 +14,5 @@ urlpatterns = [
     path('', views.Login.as_view(), name='login'),
     path('logout/', views.Logout.as_view(), name='logout'),
     path('add_cookie/', views.add_cookie),
-    path('check_cookie', views.check_cookie),
+    path('check_cookie/', views.check_cookie),
 ]
