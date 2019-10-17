@@ -109,11 +109,11 @@ def user_data_create(request):
 
 def add_cookie(request):
     respsonse = HttpResponse("Cookie Test")
-    respsonse.set_cookie("name", "john")
+    respsonse.set_cookie("name", "john")  #cookie追加
     return respsonse
 
 def check_cookie(request):
-    value = request.COOKIES["name"]
+    value = request.COOKIES["name"]  #cookieから値を取る
     return HttpResponse("Cookie test value %s" % value)
 
 def post_comment(request):
@@ -122,4 +122,4 @@ def post_comment(request):
             return HttpResponse("You've already commented")
         request.session['has_commented'] = True
         return HttpResponse('Thanks for your comment !!')
-    return render_to_response('django_app/post_comment.html')
+    return render_to_response('django_app/post_comment.html')  #post_comment.htmlがない
